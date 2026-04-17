@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Leaflet z-index fixes (must override Tailwind resets) ─────────────────── */
+.leaflet-pane         { z-index: 400 !important; }
+.leaflet-top,
+.leaflet-bottom       { z-index: 1000 !important; }
+.leaflet-control      { z-index: 1000 !important; }
+.leaflet-marker-pane  { z-index: 600 !important; }
+.leaflet-tooltip-pane { z-index: 650 !important; }
+.leaflet-popup-pane   { z-index: 700 !important; }
+
+/* Prevent Tailwind preflight stripping Leaflet marker images */
+img.leaflet-marker-icon,
+img.leaflet-marker-shadow { max-width: none; }
+
+/* Leaflet popup inherits app font */
+.leaflet-popup-content {
+  font-family: inherit;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  margin: 0.5rem 0.75rem;
+}
+.leaflet-popup-content-wrapper {
+  border-radius: 0.5rem;
+}
+
+/* Map fills its grid cell */
+.misper-map-container {
+  height: 100%;
+  width: 100%;
+}
+
+/* ── Scrollbar styling ──────────────────────────────────────────────────────── */
+.scrollbar-thin::-webkit-scrollbar        { width: 5px; }
+.scrollbar-thin::-webkit-scrollbar-track  { @apply bg-gray-100 dark:bg-gray-800; }
+.scrollbar-thin::-webkit-scrollbar-thumb  { @apply bg-gray-300 dark:bg-gray-600 rounded-full; }
+
+/* ── Utility classes ────────────────────────────────────────────────────────── */
+@layer components {
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700;
+  }
+  .btn-primary {
+    @apply bg-police-blue-700 hover:bg-police-blue-800 text-white text-sm font-medium px-3 py-1.5 rounded-md transition-colors;
+  }
+  .btn-secondary {
+    @apply bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 text-sm font-medium px-3 py-1.5 rounded-md transition-colors;
+  }
+  .btn-danger {
+    @apply bg-red-600 hover:bg-red-700 text-white text-sm font-medium px-3 py-1.5 rounded-md transition-colors;
+  }
+  .input-field {
+    @apply block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-police-blue-500;
+  }
+  .badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-medium;
+  }
+}
